@@ -5,7 +5,7 @@
 "repositories": [
   {
     "type": "vcs",
-    "url": "git@gitlab.monotos.biz:pvduc/daito-utils.git"
+    "url": "git@github.com:pvduc-daito/laravel-common.git"
   }
 ]
 ```
@@ -19,7 +19,7 @@ composer require daito/lib:^1.0
 
 ### Dev (testing latest branch code)
 ```bash
-composer require daito/lib:dev-master
+composer require daito/lib:dev-main
 ```
 
 ## 3) Update package
