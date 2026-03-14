@@ -1,0 +1,29 @@
+{
+  "name": "daito/lib",
+  "description": "A description of your package",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Daito\\Lib\\": "src/"
+    }
+  },
+  "require": {
+    "brick/math": "^0.9 || ^0.10 || ^0.11 || ^0.13 || ^0.14",
+    "php": "^7.3 || ^8.0",
+    "laravel/framework": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
+    "milon/barcode": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0"
+  },
+  "suggest": {
+    "ext-gmp": "Faster big-number calculations",
+    "ext-bcmath": "Faster decimal calculations when GMP is unavailable"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Daito\\Lib\\DaitoQueryLog\\Providers\\DaitoQueryLogProvider",
+        "Daito\\Lib\\DaitoGoogleChat\\Providers\\DaitoGoogleChatProvider",
+        "Daito\\Lib\\DaitoExceptionNotifier\\Providers\\DaitoExceptionNotifierProvider"
+      ]
+    }
+  }
+}
