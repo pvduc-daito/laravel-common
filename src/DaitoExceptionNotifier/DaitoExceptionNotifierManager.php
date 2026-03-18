@@ -40,6 +40,8 @@ class DaitoExceptionNotifierManager
             );
         }
 
+        $webhookUrl = $this->resolveWebhookUrl($webhookUrl);
+
         return $this->daitoGoogleChatManager->sendCardV2(
             $this->buildCardV2($throwable, $arrContext),
             $webhookUrl
@@ -51,6 +53,8 @@ class DaitoExceptionNotifierManager
         if (!(bool) config('daito-exception-notifier.enabled', true)) {
             return;
         }
+
+        $webhookUrl = $this->resolveWebhookUrl($webhookUrl);
 
         $this->daitoGoogleChatManager->queueCardV2(
             $this->buildCardV2($throwable, $arrContext),
@@ -66,6 +70,8 @@ class DaitoExceptionNotifierManager
                 'status' => 'disabled',
             );
         }
+
+        $webhookUrl = $this->resolveWebhookUrl($webhookUrl);
 
         if ($this->shouldBlockByLoopGuard($throwable, $arrContext)) {
             return array(
@@ -90,6 +96,15 @@ class DaitoExceptionNotifierManager
         } finally {
             self::$isNotifying = false;
         }
+    }
+
+    private function resolveWebhookUrl($webhookUrl)
+    {
+        if ($webhookUrl === null || $webhookUrl === '') {
+            return config('daito-exception-notifier.webhook_url', '');
+        }
+
+        return $webhookUrl;
     }
 
     private function buildCardV2(Throwable $throwable, array $arrContext = array()): array

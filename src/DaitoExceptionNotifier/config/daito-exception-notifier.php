@@ -3,6 +3,7 @@
 return array(
     'enabled' => env('DAITO_EXCEPTION_NOTIFIER_ENABLED', true),
     'send_mode' => env('DAITO_EXCEPTION_NOTIFIER_SEND_MODE', 'queue'), // queue|sync
+    'webhook_url' => env('DAITO_EXCEPTION_NOTIFIER_WEBHOOK_URL', ''),
     'card_title' => env('DAITO_EXCEPTION_NOTIFIER_CARD_TITLE', 'Exception Alert'),
     'loop_guard_enabled' => env('DAITO_EXCEPTION_NOTIFIER_LOOP_GUARD_ENABLED', true),
     'loop_guard_ttl_seconds' => env('DAITO_EXCEPTION_NOTIFIER_LOOP_GUARD_TTL_SECONDS', 10),
