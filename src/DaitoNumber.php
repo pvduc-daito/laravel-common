@@ -26,7 +26,7 @@ class DaitoNumber
                 'prefix' => '',
                 'suffix' => '',
                 'decimals' => null,
-                'trim_trailing_zeros' => true,
+                'trim_zeros' => true,
                 'max_decimals' => self::DEFAULT_MAX_DECIMALS,
             ),
             $arrOptions
@@ -43,6 +43,9 @@ class DaitoNumber
             }
 
             $unsigned = (string) BigDecimal::of($unsigned)->toScale($decimals, RoundingMode::HALF_UP);
+            if ($arrConfig['trim_zeros']) {
+                $unsigned = self::trimTrailingZeros($unsigned);
+            }
         } else {
             $maxDecimals = (int) $arrConfig['max_decimals'];
             if ($maxDecimals < 0) {
@@ -50,7 +53,7 @@ class DaitoNumber
             }
 
             $unsigned = (string) BigDecimal::of($unsigned)->toScale($maxDecimals, RoundingMode::HALF_UP);
-            if ($arrConfig['trim_trailing_zeros']) {
+            if ($arrConfig['trim_zeros']) {
                 $unsigned = self::trimTrailingZeros($unsigned);
             }
         }
@@ -81,7 +84,7 @@ class DaitoNumber
         $arrCurrencyOptions = array_merge(
             array(
                 'decimals' => 2,
-                'trim_trailing_zeros' => false,
+                'trim_zeros' => false,
                 'prefix' => '',
                 'suffix' => '',
             ),
@@ -103,7 +106,7 @@ class DaitoNumber
         $arrPercentOptions = array_merge(
             array(
                 'decimals' => 2,
-                'trim_trailing_zeros' => true,
+                'trim_zeros' => true,
                 'suffix' => '%',
                 'input_ratio' => false,
             ),
