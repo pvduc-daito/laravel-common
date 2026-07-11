@@ -67,7 +67,7 @@ class DaitoResponse
     /**
      * Build a validation failed payload with HTTP 422 default.
      */
-    public static function validateFail(array $arrErrors, $message = 'Validation failed', $statusCode = 422)
+    public static function validateFail(array $arrErrors, $message = '', $statusCode = 422)
     {
         return self::fail(
             $message,
@@ -81,7 +81,7 @@ class DaitoResponse
     /**
      * Build a validation failed payload and return JSON string.
      */
-    public static function validateFailJson(array $arrErrors, $message = 'Validation failed', $statusCode = 422)
+    public static function validateFailJson(array $arrErrors, $message = '', $statusCode = 422)
     {
         return self::toJson(self::validateFail($arrErrors, $message, $statusCode));
     }
